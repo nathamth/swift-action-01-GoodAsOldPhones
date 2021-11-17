@@ -20,7 +20,12 @@ jobs:
       run: ls -la
     - name: swift version
       run: swift --version
-    - name: Build
+    - name: xcode version
+      run: xcodebuild -version
+    - name: Build xcode
+      run: |
+          xcodebuild clean test -project "GoodAsOldPhones.xcodeproj" -scheme "GoodAsOldPhones" -destination "platform=iOS Simulator,name=iPhone 12 Pro,OS=latest" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+    - name: Build swift
       run: swift build -v
     - name: Run tests
       run: swift test -v
